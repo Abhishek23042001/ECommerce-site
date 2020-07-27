@@ -119,9 +119,9 @@ def checkout(request):
             'TXN_AMOUNT': str(amount),
             'CUST_ID': email,
             'INDUSTRY_TYPE_ID':'Retail',
-            'WEBSITE':'WEBSTAGING', # WEBSTAGING is used for testing purpose instead of 'worldpressplg'
+            'WEBSITE':'WEBSTAGING', 
             'CHANNEL_ID':'WEB',
-	        'CALLBACK_URL':'http://127.0.0.1:8000/shop/handlerequest/',
+	        
         }
         
         param_dict['CHECKSUMHASH'] = Checksum.generate_checksum_by_str(param_dict,MERCHANT_KEY,salt=None)
