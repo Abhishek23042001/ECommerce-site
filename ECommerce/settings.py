@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import locale
 from decouple import config
 from django.contrib.messages import constants as messages
 
@@ -22,10 +23,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+config.encoding = locale.getpreferredencoding(False)
 SECRET_KEY =  config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG')
+DEBUG = config('DEBUG',default=False, cast=bool)
+EMAIL_HOST = config('EMAIL_HOST', default='localhost')
+EMAIL_PORT = config('EMAIL_PORT', default=25, cast=int)
 
 ALLOWED_HOSTS = []
 
@@ -121,6 +125,10 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
+
+PAYTM_MERCHANT_KEY= "<YOUR-PAYTM-MERCHANT-KEY>"
+PAYTM_MERCHANT_ID = "<YOUR-PAYTM-MERCHANT-ID>"
+PAYTM_CALLBACK_URL = "http://localhost:8000/response/"
 
 STATIC_URL = '/static/'
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')

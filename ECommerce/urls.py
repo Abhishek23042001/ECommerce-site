@@ -24,7 +24,7 @@ urlpatterns = [
     path('',views.index,name='index'),
     path('shop/',include('shop.urls')),
     path('blog/',include('blog.urls')),
-    path('', include('django.contrib.auth.urls')),
+    path('^', include('django.contrib.auth.urls'))
 ]
 
 if settings.DEBUG:
